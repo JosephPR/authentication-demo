@@ -9,6 +9,7 @@ var express               = require("express"),
 mongoose.connect("mongodb://localhost/auth_demo_app");
 var app = express();
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(require("express-session")({
     secret: "Rusty is the best and cutest dog in the world",
@@ -30,6 +31,11 @@ passport.deserializeUser(User.deserializeUser());
 app.get("/", function(req, res){
     res.render("home");
 });
+
+app.get("/order", function (req, res){
+  res.render("order")
+})
+
 
 app.get("/secret",isLoggedIn, function(req, res){
    res.render("secret");
