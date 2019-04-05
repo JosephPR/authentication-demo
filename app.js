@@ -2,11 +2,12 @@ var express               = require("express"),
     mongoose              = require("mongoose"),
     passport              = require("passport"),
     bodyParser            = require("body-parser"),
+    granim                = require("granim"),
     User                  = require("./models/user"),
     LocalStrategy         = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose")
 
-mongoose.connect("mongodb://localhost/auth_demo_app");
+mongoose.connect("mongodb://localhost/3000");
 var app = express();
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -34,7 +35,7 @@ app.get("/", function(req, res){
 
 app.get("/order", function (req, res){
   res.render("order")
-})
+});
 
 
 app.get("/secret",isLoggedIn, function(req, res){
